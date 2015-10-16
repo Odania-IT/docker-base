@@ -12,7 +12,7 @@ ENV RUBYGEMS_VERSION 2.4.8
 
 RUN apt-get update
 RUN apt-get install -y vim curl nginx bison libgdbm-dev ruby build-essential autoconf zlib1g-dev \
-	bzip2 ca-certificates libffi-dev libgdbm3 libssl-dev libyaml-dev procps git vim
+	bzip2 ca-certificates libffi-dev libgdbm3 libssl-dev libyaml-dev procps git vim apt-transport-https
 RUN rm -rf /var/lib/apt/lists/* \
 	&& mkdir -p /usr/src/ruby \
 	&& curl -fSL -o ruby.tar.gz "http://cache.ruby-lang.org/pub/ruby/$RUBY_MAJOR/ruby-$RUBY_VERSION.tar.gz" \
