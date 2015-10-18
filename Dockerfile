@@ -11,7 +11,7 @@ ENV RUBY_DOWNLOAD_SHA256 df795f2f99860745a416092a4004b016ccf77e8b82dec956b120f18
 ENV RUBYGEMS_VERSION 2.4.8
 
 RUN apt-get update
-RUN apt-get install -y vim curl nginx bison libgdbm-dev ruby build-essential autoconf zlib1g-dev \
+RUN apt-get install -y vim curl nginx bison libgdbm-dev ruby build-essential autoconf zlib1g-dev unzip \
 	bzip2 ca-certificates libffi-dev libgdbm3 libssl-dev libyaml-dev procps git vim apt-transport-https
 RUN rm -rf /var/lib/apt/lists/* \
 	&& mkdir -p /usr/src/ruby \
