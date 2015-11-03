@@ -56,6 +56,9 @@ RUN rm -f /etc/cron.daily/dpkg
 RUN rm -f /etc/cron.daily/password
 RUN rm -f /etc/cron.weekly/fstrim
 
+RUN useradd -d /srv -s /bin/bash app
+RUN chown app:app /srv
+
 CMD ["/usr/bin/supervisord"]
 
 # Clean up APT when done.
