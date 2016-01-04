@@ -2,6 +2,7 @@ FROM phusion/baseimage:latest
 MAINTAINER Mike Petersen <mike@odania-it.de>
 
 # Set correct environment variables.
+ENV DEBIAN_FRONTEND noninteractive
 ENV HOME /root
 
 RUN apt-get update
