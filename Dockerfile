@@ -9,7 +9,9 @@ RUN apt-get update
 RUN apt-get -y dist-upgrade
 RUN apt-get install -y vim curl nginx bison libgdbm-dev ruby build-essential autoconf zlib1g-dev unzip \
 	bzip2 ca-certificates libffi-dev libgdbm3 libssl-dev libyaml-dev procps git vim apt-transport-https \
-	unattended-upgrades logcheck logcheck-database make htop vim wget zip software-properties-common
+	unattended-upgrades logcheck logcheck-database make htop vim wget zip software-properties-common \
+	libxml2-dev libxslt1-dev imagemagick libmagickwand-dev libmysqlclient-dev libsqlite3-dev libpq-dev \
+	libcurl4-openssl-dev
 
 # Ruby environment vars
 ENV RUBY_MAJOR 2.3
