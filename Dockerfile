@@ -10,7 +10,7 @@ RUN apk add curl wget bash htop
 RUN apk add ruby ruby-bundler
 
 # Install common dependencies
-RUN apk add autoconf zlib openssl imagemagick mariadb-libs libpq sqlite-libs unzip bzip2
+RUN apk add autoconf zlib openssl imagemagick mariadb-libs libpq sqlite-libs unzip bzip2 libxml2 readline-dev
 
 # Clean APK cache
 RUN rm -rf /var/cache/apk/*
