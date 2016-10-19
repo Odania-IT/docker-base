@@ -4,7 +4,7 @@ MAINTAINER Mike Petersen <mike@odania-it.de>
 # Install base packages
 RUN apk update
 RUN apk upgrade
-RUN apk --update add curl wget bash htop curl-dev build-base
+RUN apk --update add curl wget bash htop curl-dev build-base bind-tools
 
 # Install ruby and ruby-bundler
 RUN apk --update add ruby ruby-dev ruby-bundler ruby-io-console ruby-irb ruby-json ruby-rake ruby-rdoc
