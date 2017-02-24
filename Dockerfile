@@ -1,23 +1,23 @@
-FROM phusion/baseimage:latest
+FROM ubuntu:16.04
 MAINTAINER Mike Petersen <mike@odania-it.de>
 
 # Set correct environment variables.
 ENV DEBIAN_FRONTEND noninteractive
 ENV HOME /root
 
-RUN apt-get update
-RUN apt-get -y dist-upgrade
-RUN apt-get install -y vim curl nginx bison libgdbm-dev ruby build-essential autoconf zlib1g-dev unzip \
-	bzip2 ca-certificates libffi-dev libgdbm3 libssl-dev libyaml-dev procps git vim apt-transport-https \
-	unattended-upgrades logcheck logcheck-database make htop vim wget zip software-properties-common \
-	libxml2-dev libxslt1-dev imagemagick libmagickwand-dev libmysqlclient-dev libsqlite3-dev libpq-dev \
-	libcurl4-openssl-dev net-tools
+RUN apt-get update && apt-get -y dist-upgrade \
+	&& apt-get install -y vim curl nginx bison libgdbm-dev ruby build-essential autoconf zlib1g-dev unzip \
+		bzip2 ca-certificates libffi-dev libgdbm3 libssl-dev libyaml-dev procps git vim apt-transport-https \
+		unattended-upgrades logcheck logcheck-database make htop vim wget zip software-properties-common \
+		libxml2-dev libxslt1-dev imagemagick libmagickwand-dev libmysqlclient-dev libsqlite3-dev libpq-dev \
+		libcurl4-openssl-dev net-tools \
+	&& apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Ruby environment vars
 ENV RUBY_MAJOR 2.3
-ENV RUBY_VERSION 2.3.0
-ENV RUBY_DOWNLOAD_SHA256 ba5ba60e5f1aa21b4ef8e9bf35b9ddb57286cb546aac4b5a28c71f459467e507
-ENV RUBYGEMS_VERSION 2.5.1
+ENV RUBY_VERSION 2.3.3
+ENV RUBY_DOWNLOAD_SHA256 241408c8c555b258846368830a06146e4849a1d58dcaf6b14a3b6a73058115b7
+ENV RUBYGEMS_VERSION 2.6.10
 
 RUN rm -rf /var/lib/apt/lists/* \
 	&& mkdir -p /usr/src/ruby \
@@ -38,15 +38,8 @@ RUN rm -rf /var/lib/apt/lists/* \
 ENV GEM_HOME /usr/local/bundle
 ENV PATH $GEM_HOME/bin:$PATH
 
-ENV BUNDLER_VERSION 1.11.2
+ENV BUNDLER_VERSION 1.14.5
 
 RUN gem install bundler --version "$BUNDLER_VERSION" \
 	&& bundle config --global path "$GEM_HOME" \
 	&& bundle config --global bin "$GEM_HOME/bin"
-
-# Setup cron
-RUN chmod 600 /etc/crontab
-COPY 20auto-upgrades /etc/apt/apt.conf.d/20auto-upgrades
-
-# Clean up APT when done.
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
