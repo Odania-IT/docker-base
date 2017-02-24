@@ -10,7 +10,7 @@ RUN apt-get update && apt-get -y dist-upgrade \
 		bzip2 ca-certificates libffi-dev libgdbm3 libssl-dev libyaml-dev procps git vim apt-transport-https \
 		unattended-upgrades logcheck logcheck-database make htop vim wget zip software-properties-common \
 		libxml2-dev libxslt1-dev imagemagick libmagickwand-dev libmysqlclient-dev libsqlite3-dev libpq-dev \
-		libcurl4-openssl-dev net-tools \
+		libcurl4-openssl-dev net-tools libreadline-dev \
 	&& apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Ruby environment vars
