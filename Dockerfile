@@ -10,8 +10,8 @@ RUN apk --update add curl wget bash htop curl-dev build-base bind-tools
 RUN apk --update add ruby ruby-dev ruby-bundler ruby-io-console ruby-irb ruby-json ruby-rake ruby-rdoc
 
 # Install common dependencies
-RUN apk --update add autoconf zlib openssl imagemagick mariadb-libs mariadb-dev libpq postgresql-dev sqlite-libs \
-			sqlite-dev unzip bzip2 libxml2 readline-dev
+RUN apk --update add autoconf zlib openssl imagemagick mariadb-dev libpq postgresql-dev sqlite-libs \
+			sqlite-dev unzip bzip2 libxml2 readline-dev openssh-client git
 
 # Clean APK cache
 RUN rm -rf /var/cache/apk/*
