@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV HOME /root
 
 RUN apt-get update && apt-get -y dist-upgrade \
-	&& apt-get install -y vim curl nginx bison libgdbm-dev ruby build-essential autoconf zlib1g-dev unzip \
+	&& apt-get install -y vim curl bison libgdbm-dev ruby build-essential autoconf zlib1g-dev unzip \
 		bzip2 ca-certificates libffi-dev libgdbm3 libssl-dev libyaml-dev procps git vim apt-transport-https \
 		unattended-upgrades logcheck logcheck-database make htop vim wget zip software-properties-common \
 		libxml2-dev libxslt1-dev imagemagick libmagickwand-dev libmysqlclient-dev libsqlite3-dev libpq-dev \
@@ -33,10 +33,6 @@ RUN rm -rf /var/lib/apt/lists/* \
 	&& apt-get purge -y --auto-remove bison libgdbm-dev ruby \
 	&& gem update --system $RUBYGEMS_VERSION \
 	&& rm -r /usr/src/ruby
-
-RUN sed -i -e 's#access_log /var/log/nginx/access.log;#access_log /dev/stdout;#' /etc/nginx/nginx.conf
-RUN sed -i -e 's#error_log /var/log/nginx/error.log;#error_log /dev/stderr;#' /etc/nginx/nginx.conf
-RUN sed -i -e 's/# server_names_hash_bucket_size 64;/server_names_hash_bucket_size 64;/' /etc/nginx/nginx.conf
 
 # install things globally, for great justice
 ENV GEM_HOME /usr/local/bundle
