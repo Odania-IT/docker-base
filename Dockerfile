@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 MAINTAINER Mike Petersen <mike@odania-it.de>
 
 # Set correct environment variables.
@@ -7,17 +7,17 @@ ENV HOME /root
 
 RUN apt-get update && apt-get -y dist-upgrade \
 	&& apt-get install -y vim curl bison libgdbm-dev ruby build-essential autoconf zlib1g-dev unzip \
-		bzip2 ca-certificates libffi-dev libgdbm3 libssl-dev libyaml-dev procps git vim apt-transport-https \
+		bzip2 ca-certificates libffi-dev libgdbm5 libssl-dev libyaml-dev procps git vim apt-transport-https \
 		unattended-upgrades logcheck logcheck-database make htop vim wget zip software-properties-common \
 		libxml2-dev libxslt1-dev imagemagick libmagickwand-dev libmysqlclient-dev libsqlite3-dev libpq-dev \
 		libcurl4-openssl-dev net-tools libreadline-dev \
 	&& apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Ruby environment vars
-ENV RUBY_MAJOR 2.3
-ENV RUBY_VERSION 2.3.3
-ENV RUBY_DOWNLOAD_SHA256 241408c8c555b258846368830a06146e4849a1d58dcaf6b14a3b6a73058115b7
-ENV RUBYGEMS_VERSION 2.6.10
+ENV RUBY_MAJOR 2.6
+ENV RUBY_VERSION 2.6.3
+ENV RUBY_DOWNLOAD_SHA256 577fd3795f22b8d91c1d4e6733637b0394d4082db659fccf224c774a2b1c82fb
+ENV RUBYGEMS_VERSION 3.0.3
 
 RUN rm -rf /var/lib/apt/lists/* \
 	&& mkdir -p /usr/src/ruby \
@@ -38,7 +38,7 @@ RUN rm -rf /var/lib/apt/lists/* \
 ENV GEM_HOME /usr/local/bundle
 ENV PATH $GEM_HOME/bin:$PATH
 
-ENV BUNDLER_VERSION 1.14.5
+ENV BUNDLER_VERSION 2.0.1
 
 RUN gem install bundler --version "$BUNDLER_VERSION" \
 	&& bundle config --global path "$GEM_HOME" \
