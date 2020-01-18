@@ -15,9 +15,9 @@ RUN apt-get update && apt-get -y dist-upgrade \
 
 # Ruby environment vars
 ENV RUBY_MAJOR 2.6
-ENV RUBY_VERSION 2.6.3
-ENV RUBY_DOWNLOAD_SHA256 577fd3795f22b8d91c1d4e6733637b0394d4082db659fccf224c774a2b1c82fb
-ENV RUBYGEMS_VERSION 3.0.3
+ENV RUBY_VERSION 2.6.5
+ENV RUBY_DOWNLOAD_SHA256 d5d6da717fd48524596f9b78ac5a2eeb9691753da5c06923a6c31190abe01a62
+ENV RUBYGEMS_VERSION 3.1.2
 
 RUN rm -rf /var/lib/apt/lists/* \
 	&& mkdir -p /usr/src/ruby \
@@ -38,7 +38,7 @@ RUN rm -rf /var/lib/apt/lists/* \
 ENV GEM_HOME /usr/local/bundle
 ENV PATH $GEM_HOME/bin:$PATH
 
-ENV BUNDLER_VERSION 2.0.1
+ENV BUNDLER_VERSION 2.1.4
 
 RUN gem install bundler --version "$BUNDLER_VERSION" \
 	&& bundle config --global path "$GEM_HOME" \
